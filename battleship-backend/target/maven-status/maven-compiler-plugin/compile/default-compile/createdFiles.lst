@@ -1,0 +1,7 @@
+com\battleship\model\HitResponse.class
+com\battleship\controller\BattleFieldController.class
+com\battleship\service\BattleFieldService.class
+com\battleship\model\HitLocation.class
+com\battleship\config\ServiceConfig.class
+com\battleship\BattleshipBackendApplication.class
+com\battleship\model\ShipLocation.class

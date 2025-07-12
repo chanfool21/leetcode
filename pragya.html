@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>❤️ My Pragya - The Most Unique Wife Ever ❤️</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            background: linear-gradient(45deg, #FFB6C1, #FFC0CB);
+            text-align: center;
+            padding: 20px;
+            color: #333;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+        }
+        h1 {
+            color: #FF1493;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        h1:hover {
+            transform: scale(1.1);
+        }
+        .heart {
+            color: red;
+            font-size: 24px;
+            animation: beat 1s infinite;
+        }
+        @keyframes beat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .qualities {
+            text-align: left;
+            padding: 20px;
+            margin: 20px;
+            background-color: #FFF0F5;
+            border-radius: 10px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        .qualities:hover {
+            transform: translateX(10px);
+        }
+        .warning {
+            background-color: #FFE4E1;
+            padding: 10px;
+            margin: 20px;
+            border-radius: 10px;
+            font-style: italic;
+        }
+        .floating-heart {
+            position: fixed;
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none;
+            animation: float-up 4s linear;
+            z-index: 0;
+        }
+        @keyframes float-up {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        .love-meter {
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            background: #FFE4E1;
+            border-radius: 10px;
+        }
+        .love-meter-fill {
+            width: 0%;
+            height: 20px;
+            background: linear-gradient(90deg, #FF69B4, #FF1493);
+            border-radius: 5px;
+            transition: width 0.5s;
+        }
+        .interactive-btn {
+            background: #FF1493;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.3s;
+        }
+        .interactive-btn:hover {
+            transform: scale(1.1);
+        }
+        #mood-message {
+            font-style: italic;
+            margin: 10px;
+            min-height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="title"><span class="heart">❤️</span> The Pragya Manual <span class="heart">❤️</span></h1>
+        
+        <h2>Warning: Handle with Care!</h2>
+        <div class="warning">
+            This wife is extremely unpredictable and may suddenly burst into laughter or dance at any moment!
+        </div>
+
+        <div class="love-meter">
+            <h4>Love Meter ❤️</h4>
+            <div class="love-meter-fill" id="loveMeter"></div>
+        </div>
+
+        <button class="interactive-btn" onclick="checkMood()">Check Today's Mood</button>
+        <div id="mood-message"></div>
+
+        <h3>Special Features:</h3>
+        <div class="qualities">
+            <ul>
+                <li>✨ Professional Mood Swinger (From "I love you" to "What's wrong with you?" in 0.5 seconds)</li>
+                <li>🎭 Drama Queen Level: Expert (Oscar-worthy performances daily)</li>
+                <li>👩‍🍳 Kitchen Scientist (Experiments with food that sometimes turn out edible)</li>
+                <li>🛍️ Shopping Expert (Can find "essential" items in any store)</li>
+                <li>❤️ Love Generator (Produces infinite amounts of love and cuteness)</li>
+                <li>😴 Professional Sleeper (Can fall asleep anywhere, anytime)</li>
+            </ul>
+        </div>
+
+        <h3>Daily Care Instructions:</h3>
+        <div class="qualities">
+            <ol>
+                <li>Feed regularly with chocolate and ice cream 🍫</li>
+                <li>Provide daily doses of hugs and compliments 🤗</li>
+                <li>Listen to all stories (even if you've heard them 100 times) 👂</li>
+                <li>Agree that she's always right (even when she's not) ✅</li>
+                <li>Never mention the shopping bills 🛍️</li>
+            </ol>
+        </div>
+
+        <button class="interactive-btn" onclick="generateCompliment()">Generate Random Compliment</button>
+        <p id="compliment"></p>
+
+        <h3>Warranty Information:</h3>
+        <p>This model comes with a lifetime warranty of love, laughter, and adventure! ❤️</p>
+        <p>No returns or exchanges accepted (Not that you'd want to!) 😉</p>
+
+        <div class="warning">
+            <p><strong>Disclaimer:</strong> Side effects may include extreme happiness, constant smiling, and a permanently full heart! ❤️</p>
+        </div>
+    </div>
+
+    <script>
+        // Floating hearts animation
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+
+        setInterval(createHeart, 500);
+
+        // Love meter animation
+        let loveLevel = 0;
+        setInterval(() => {
+            loveLevel = Math.min(100, loveLevel + 1);
+            document.getElementById('loveMeter').style.width = loveLevel + '%';
+        }, 50);
+
+        // Random mood generator
+        function checkMood() {
+            const moods = [
+                "Feeling extra cute today! 😊",
+                "In shopping mode! Hide your credit cards! 🛍️",
+                "Need chocolate ASAP! 🍫",
+                "Ready to conquer the world! 💪",
+                "Missing you already! 🥰",
+                "Drama mode activated! 🎭",
+                "Time for a random dance party! 💃"
+            ];
+            const moodMessage = moods[Math.floor(Math.random() * moods.length)];
+            document.getElementById('mood-message').textContent = moodMessage;
+        }
+
+        // Random compliment generator
+        function generateCompliment() {
+            const compliments = [
+                "You're the cutest wife in the universe! 🌟",
+                "Your smile lights up my world! 😊",
+                "You make every day an adventure! 🎈",
+                "You're the best thing that ever happened to me! ❤️",
+                "You're perfect, even when you're being dramatic! 🎭",
+                "Your laugh is my favorite sound! 🎵",
+                "You're the queen of my heart! 👑"
+            ];
+            const compliment = compliments[Math.floor(Math.random() * compliments.length)];
+            document.getElementById('compliment').textContent = compliment;
+        }
+
+        // Title click animation
+        document.getElementById('title').addEventListener('click', function() {
+            this.style.transform = 'rotate(360deg)';
+            setTimeout(() => {
+                this.style.transform = 'none';
+            }, 1000);
+        });
+
+        // Easter egg: Konami code
+        let keys = [];
+        const konami = 'ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightba';
+        document.addEventListener('keydown', (e) => {
+            keys.push(e.key);
+            keys = keys.slice(-12);
+            if (keys.join('') === konami) {
+                alert('Super Wife Mode Activated! 🦸‍♀️');
+            }
+        });
+    </script>
+</body>
+</html> 
